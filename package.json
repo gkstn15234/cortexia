@@ -1,0 +1,57 @@
+{
+  "name": "cortexia",
+  "version": "1.0.0",
+  "description": "Give any LLM a human-like brain. Permanent memory with forgetting curves, emotions, and personality — powered by Spiking Neural Networks.",
+  "main": "index.js",
+  "bin": {
+    "cortexia": "./bin/cortexia.js"
+  },
+  "scripts": {
+    "postinstall": "node setup/postinstall.js"
+  },
+  "keywords": [
+    "ai",
+    "memory",
+    "llm",
+    "brain",
+    "snn",
+    "spiking-neural-network",
+    "long-term-memory",
+    "claude",
+    "claude-code",
+    "mcp",
+    "rag",
+    "persistent-memory",
+    "forgetting-curve",
+    "emotion",
+    "personality",
+    "neurotransmitter"
+  ],
+  "author": "Cortexia Labs",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gkstn15234/cortexia"
+  },
+  "homepage": "https://cortexia.dev",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "index.js",
+    "bin/",
+    "core/*.js",
+    "!core/*.src.js",
+    "mcp/",
+    "setup/",
+    "templates/",
+    "LICENSE",
+    "README.md"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "javascript-obfuscator": "^5.3.0"
+  }
+}

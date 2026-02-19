@@ -1,0 +1,33 @@
+# Brain data — NEVER publish
+.cortex_brain/
+.cortex_docs/
+.cortexia/
+.cortexia_docs/
+
+# API keys
+.env
+.env.*
+config.json
+
+# Test files
+test-*
+test/
+tests/
+*.test.js
+
+# Personal data
+ddd
+essay_*
+
+# Dev files
+node_modules/
+.claude/
+*.log
+.DS_Store
+Thumbs.db
+
+# Source maps
+*.map
+
+# Build artifacts (source backups)
+core/*.src.js

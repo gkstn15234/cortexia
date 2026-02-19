@@ -1,0 +1,28 @@
+# Core engine (proprietary — npm only)
+core/
+
+# Source backups
+*.src.js
+
+# Brain data
+.cortexia/
+.cortexia_docs/
+.cortex_brain/
+.cortex_docs/
+
+# Secrets
+.env
+.env.*
+.cortexia_license
+
+# Node
+node_modules/
+package-lock.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dev
+*.log
+*.tgz
