@@ -32,12 +32,16 @@ console.log();
 console.log(c.brand('  ◉ Cortexia Init'));
 console.log(c.dim('  ─────────────────────────────────────────'));
 
-// 1. .mcp.json
+// 1. .mcp.json — detect local vs global install
+const localMcp = path.join(cwd, 'node_modules', 'cortexia', 'mcp', 'server.js');
+const globalMcp = path.join(__dirname, '..', 'mcp', 'server.js');
+const mcpServerPath = fs.existsSync(localMcp) ? localMcp : path.resolve(globalMcp);
+
 const mcpConfig = {
     mcpServers: {
         cortexia: {
             command: 'node',
-            args: [path.join('node_modules', 'cortexia', 'mcp', 'server.js')],
+            args: [mcpServerPath],
             env: {
                 CORTEXIA_DATA_DIR: '.cortexia',
                 CORTEXIA_DOCS_DIR: '.cortexia_docs',
