@@ -1,6 +1,6 @@
 {
   "name": "cortexia",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Give any LLM a human-like brain. Permanent memory with forgetting curves, emotions, and personality — powered by Spiking Neural Networks.",
   "main": "index.js",
   "bin": {
