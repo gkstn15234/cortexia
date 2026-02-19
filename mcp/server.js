@@ -124,13 +124,26 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
                 return { content: [{ type: 'text', text: JSON.stringify(result, null, 2) }] };
             }
             case 'cortexia_state': {
+                const s = cortexia.stats();
+                const d = cortexia.docs();
+                const memLeft = s.memoryLimit === Infinity ? '∞' : (s.memoryLimit - s.totalMemories);
+                const docSources = d.sources ? d.sources.length : 0;
+                const docLeft = d.documentLimit === Infinity ? '∞' : (d.documentLimit - docSources);
                 const result = {
                     tier: cortexia.tier,
                     limits: cortexia.limits,
+                    remaining: {
+                        memories: memLeft,
+                        documents: docLeft,
+                    },
+                    usage: {
+                        memories: s.memoryUsage,
+                        documents: d.documentUsage,
+                    },
                     emotion: memory.getEmotionState(),
                     personality: cortexia.personality(),
-                    stats: cortexia.stats(),
-                    documents: cortexia.docs(),
+                    stats: s,
+                    documents: d,
                 };
                 return { content: [{ type: 'text', text: JSON.stringify(result, null, 2) }] };
             }

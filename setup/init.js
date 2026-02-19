@@ -130,13 +130,19 @@ try {
     const brain = new Cortexia({ userId: 'cortexia_user', dataDir: '.cortexia', docsDir: '.cortexia_docs' });
     const s = brain.stats();
     const d = brain.docs();
+    const memMax = s.memoryLimit === Infinity ? '∞' : s.memoryLimit;
+    const memLeft = s.memoryLimit === Infinity ? '∞' : (s.memoryLimit - s.totalMemories);
+    const docSources = d.sources ? d.sources.length : 0;
+    const docMax = d.documentLimit === Infinity ? '∞' : d.documentLimit;
+    const docLeft = d.documentLimit === Infinity ? '∞' : (d.documentLimit - docSources);
     const r = brain.engine.recall('recent work', { maxResults: 3 });
     let ctx = '';
     if (r.results && r.results.length > 0) {
         ctx = '\\n\\nRecent memories:\\n' + r.results.map(m => '- [' + m.type + '] ' + m.input.substring(0, 200)).join('\\n');
     }
+    const usage = '\\n\\n📊 Usage: ' + s.totalMemories + '/' + memMax + ' memories (remaining: ' + memLeft + '), ' + docSources + '/' + docMax + ' docs (remaining: ' + docLeft + ') [' + s.tier + ']';
     console.log(JSON.stringify({
-        systemMessage: '🧠 Cortexia connected. ' + s.totalMemories + ' memories, ' + d.totalChunks + ' doc chunks.' + ctx + '\\n\\nCall cortexia_recall to restore full context.'
+        systemMessage: '🧠 Cortexia connected. ' + s.totalMemories + ' memories, ' + (d.totalChunks || 0) + ' doc chunks.' + usage + ctx + '\\n\\nCall cortexia_recall to restore full context.'
     }));
 } catch(e) { console.log(JSON.stringify({})); }
 `;
