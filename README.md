@@ -1,5 +1,7 @@
 # Cortexia
 
+[한국어 README](./README_KO.md)
+
 **Give any AI a human-like brain.**
 
 Persistent memory powered by Spiking Neural Networks (SNN). Not a database. A brain.
