@@ -58,6 +58,15 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
                         enum: ['happy', 'sad', 'anxious', 'angry', 'excited', 'calm', 'focused', 'tired', 'neutral'],
                     },
                     importance: { type: 'number', description: 'Importance 0-1 (higher = stronger memory)' },
+                    thinkingChain: {
+                        type: 'array',
+                        items: { type: 'string' },
+                        description: 'Thinking process steps array. Record questions, realizations, intermediate thoughts in order.',
+                    },
+                    timezone: {
+                        type: 'string',
+                        description: 'User timezone (IANA format, e.g. "Asia/Seoul"). Default: Asia/Seoul',
+                    },
                 },
                 required: ['input'],
             },
@@ -114,6 +123,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
                     type: args.type || 'conversation',
                     emotion: args.emotion || 'neutral',
                     importance: args.importance || 0.5,
+                    thinkingChain: args.thinkingChain || [],
+                    timezone: args.timezone || 'Asia/Seoul',
                 });
                 return { content: [{ type: 'text', text: JSON.stringify(result, null, 2) }] };
             }

@@ -3,6 +3,8 @@ core/
 
 # Source backups
 *.src.js
+core-original/
+core-original-v2/
 
 # Brain data
 .cortexia/

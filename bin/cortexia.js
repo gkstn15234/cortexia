@@ -1174,6 +1174,38 @@ function startShell() {
 //  Main
 // ═══════════════════════════════════════════════════════════════
 
+// ═══════════════════════════════════════════════════════════════
+//  Auto Update Check
+// ═══════════════════════════════════════════════════════════════
+
+const CURRENT_VERSION = require(path.join(__dirname, '..', 'package.json')).version;
+
+function checkForUpdate() {
+    try {
+        const https = require('https');
+        const req = https.get('https://registry.npmjs.org/cortexia/latest', { timeout: 3000 }, (res) => {
+            let data = '';
+            res.on('data', chunk => data += chunk);
+            res.on('end', () => {
+                try {
+                    const latest = JSON.parse(data).version;
+                    if (latest && latest !== CURRENT_VERSION) {
+                        console.log();
+                        console.log(c.warn(`  ⬆ ${t('Update available!', '업데이트 가능!')} ${c.dim(CURRENT_VERSION)} → ${c.success(latest)}`));
+                        console.log(c.dim(`    npm update -g cortexia`));
+                        console.log();
+                    }
+                } catch {}
+            });
+        });
+        req.on('error', () => {});
+        req.on('timeout', () => req.destroy());
+    } catch {}
+}
+
+// 백그라운드로 체크 (CLI 시작을 늦추지 않음)
+checkForUpdate();
+
 const args = process.argv.slice(2).filter(a => a !== '--ko' && a !== '--en');
 const command = args[0];
 

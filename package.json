@@ -1,7 +1,7 @@
 {
   "name": "cortexia",
-  "version": "1.0.2",
-  "description": "Give any LLM a human-like brain. Permanent memory with forgetting curves, emotions, and personality — powered by Spiking Neural Networks.",
+  "version": "2.0.1",
+  "description": "Give any LLM a human-like brain. 500K-neuron DNA Brain with 6 cortical regions, forgetting curves, emotions, and personality.",
   "main": "index.js",
   "bin": {
     "cortexia": "./bin/cortexia.js"
@@ -25,7 +25,10 @@
     "forgetting-curve",
     "emotion",
     "personality",
-    "neurotransmitter"
+    "neurotransmitter",
+    "dna-encoding",
+    "cortical-regions",
+    "consciousness"
   ],
   "author": "Cortexia Labs",
   "license": "SEE LICENSE IN LICENSE",
